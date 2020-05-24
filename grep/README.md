@@ -16,7 +16,12 @@ This app take three arguments:
  ### Example of Usage: 
      .*IllegalArgumentException.* ./grep/src /tmp/javaGrep.out
 
-## Pseudocode
+## Pseudocode & Structure 
+
+The relations between three java files show below : 
+
+![](https://github.com/jarviscanada/jarvis_data_eng_cecilia/blob/develop/core_java/grep/asset/Diagram.png)
+
 The basic pseudocode show below :
 ```
 matchedLines = []
@@ -30,14 +35,13 @@ Methods in JavaGrep.java interface are implemented by JavaGrepImp.java and JavaG
   - listFiles: Traverse a given directory and return all files
   
   - readLines: Read a file and return all the lines
-
   - containsPattern: Check if a line contains the regex pattern
-
   - writeToFiles: Write lines to a file
-  
   - getters and setters : Save CLI arguments into private member variables (encapsulation)
 
 ## Performance Issues
-
+In JavaGrepImp.java, method listFiles and method readLines are implemented to load all the files into memory by using Java IO method recursively and save all the matching lines into a specific file. When the searching files have large size, this method would lead memory filled and machine crash. To solve this problem, JavaGrepLambda.java implement this two method by using Java 8 Lambda and Stream API. 
 ## Improvement 
- 1. 
+ 1. Java 8 Stream API allow parallelizable operation which can reduce the processing time on multi-core machines
+ 2. Add original file path behind each matching line in final output file, so it will help user easily locate 
+ 3. Ability to protect machine when load large size of files 
